@@ -5,13 +5,91 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PasswordResetApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="500">
-    <Grid RenderTransformOrigin="0.5,0.5">
-        <TextBox x:Name="PasswordTextBox" HorizontalAlignment="Left" Margin="20,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="156" Height="28"/>
-        <Label Content="Password : " HorizontalAlignment="Left" Margin="16,24,0,0" VerticalAlignment="Top" Width="156" Height="43" FontWeight="Bold" FontSize="16"/>
-        <Button x:Name="EncryptButton" Content="Encrypt Password" HorizontalAlignment="Left" Margin="20,106,0,0" VerticalAlignment="Top" Height="29" Width="156" Click="EncryptButton_Click_1"/>
-        <Button x:Name="BruteForceButton" Content="Start Brute Force Attack" HorizontalAlignment="Center" VerticalAlignment="Center" Height="29" Width="460" Click="BruteForceButton_Click_1"/>
-		<TextBox x:Name="ThreadCountTextBox" Width="200" Margin="250,253,50,38" />
-        <TextBlock x:Name="ResultTextBlock" Margin="20,270,20,33" Text="Result"/>
-    </Grid>
+        Title="Password Reset App" Height="300" Width="400"
+        Background="#F0F4F8">
+	<Window.Resources>
+		<Style x:Key="RoundedButtonStyle" TargetType="Button">
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button">
+						<Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="0"
+                                CornerRadius="5">
+							<ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+						</Border>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="FontWeight" Value="Bold"/>
+			<Setter Property="FontSize" Value="14"/>
+			<Setter Property="Padding" Value="5"/>
+			<Setter Property="Margin" Value="5"/>
+		</Style>
+	</Window.Resources>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+
+		<Label Content="Password:"
+               HorizontalAlignment="Right" VerticalAlignment="Center"
+               Margin="20" FontWeight="Bold" FontSize="14"
+               Foreground="#333333"/>
+		<TextBox x:Name="PasswordTextBox"
+                 Grid.Column="1"
+                 HorizontalAlignment="Left" VerticalAlignment="Center"
+                 Margin="10,20,20,0" Width="200" Height="30"
+                 Padding="5"
+                 Background="White" BorderBrush="#CCCCCC"
+                 Foreground="#333333" FontSize="14"/>
+
+		<Button x:Name="EncryptButton"
+                Content="Encrypt Password"
+                Grid.Row="1" Grid.ColumnSpan="2"
+                HorizontalAlignment="Center" VerticalAlignment="Center"
+                Margin="20,10" Width="300" Height="40"
+                Click="EncryptButton_Click_1"
+                Style="{StaticResource RoundedButtonStyle}"
+                Background="#4CAF50"/>
+
+		<Label Content="Thread Count:"
+               Grid.Row="2"
+               HorizontalAlignment="Right" VerticalAlignment="Center"
+               Margin="20" FontWeight="Bold" FontSize="14"
+               Foreground="#333333"/>
+		<TextBox x:Name="ThreadCountTextBox"
+                 Grid.Row="2" Grid.Column="1"
+                 HorizontalAlignment="Left" VerticalAlignment="Center"
+                 Margin="10,20,20,0" Width="200" Height="30"
+                 Padding="5"
+                 Background="White" BorderBrush="#CCCCCC"
+                 Foreground="#333333" FontSize="14"/>
+
+		<Button x:Name="BruteForceButton"
+                Content="Start Brute Force Attack"
+                Grid.Row="3" Grid.ColumnSpan="2"
+                HorizontalAlignment="Center" VerticalAlignment="Center"
+                Margin="20,10" Width="300" Height="40"
+                Click="BruteForceButton_Click_1"
+                Style="{StaticResource RoundedButtonStyle}"
+                Background="#F44336"/>
+
+		<TextBlock x:Name="ResultTextBlock"
+                   Grid.Row="4" Grid.ColumnSpan="2"
+                   HorizontalAlignment="Left" VerticalAlignment="Top"
+                   Margin="20,20,20,20" Width="360"
+                   Text="Result" TextWrapping="Wrap"
+                   Foreground="#333333" FontSize="14"/>
+	</Grid>
 </Window>

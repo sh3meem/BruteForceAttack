@@ -14,21 +14,12 @@ namespace PasswordResetApp
             InitializeComponent();
         }
 
-        private void BruteForceButton_Click(object sender, RoutedEventArgs e)
+        private void EncryptButton_Click_1(object sender, RoutedEventArgs e)
         {
-            int maxThreads = 10; // Set a default value for maxThreads
-            var startTime = DateTime.Now;
-            string foundPassword = BruteForce.BruteForceAttack(encryptedPassword, maxThreads);
-            var elapsedTime = DateTime.Now - startTime;
-
-            if (foundPassword != null)
-            {
-                ResultTextBlock.Text = $"Password found: {foundPassword} in {elapsedTime.TotalSeconds} seconds";
-            }
-            else
-            {
-                ResultTextBlock.Text = "Password not found";
-            }
+            string password = PasswordTextBox.Text;
+            encryptedPassword = PasswordManager.EncryptPassword(password);
+            File.WriteAllText("encryptedPassword.txt", encryptedPassword);
+            MessageBox.Show("Password encrypted and saved.");
         }
 
         private void BruteForceButton_Click_1(object sender, RoutedEventArgs e)
@@ -46,18 +37,6 @@ namespace PasswordResetApp
             {
                 ResultTextBlock.Text = "Password not found";
             }
-        }
-
-
-        private void EncryptButton_Click_1(object sender, RoutedEventArgs e)
-        {
-            {
-                string password = PasswordTextBox.Text;
-                encryptedPassword = PasswordManager.EncryptPassword(password);
-                File.WriteAllText("encryptedPassword.txt", encryptedPassword);
-                MessageBox.Show("Password encrypted and saved.");
-            }
-
         }
     }
 }

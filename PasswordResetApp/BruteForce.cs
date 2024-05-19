@@ -8,7 +8,7 @@ namespace PasswordResetApp.Models
     {
         public static string BruteForceAttack(string targetHash, int maxThreads)
         {
-            var charset = "abcdefghijklmnopqrstuvwxyz";
+            var charset = "abcdefghijklmnopqrstuvwxyzQWERTYUIOPASDFGHJKLZXCVBNM1234567890!@#$%^&*";
             var maxPasswordLength = 4; // Adjust as needed
 
             var tasks = new Task<string>[maxThreads];
